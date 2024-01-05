@@ -1,12 +1,11 @@
+import 'package:e_commerce_ui/models/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductWidget extends StatelessWidget {
-  final String imgUrl, name, price;
+  final Product product;
 
   const ProductWidget({
-    required this.imgUrl,
-    required this.name,
-    required this.price,
+    required this.product,
     super.key,
   });
 
@@ -23,18 +22,18 @@ class ProductWidget extends StatelessWidget {
             ),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(imgUrl),
+              image: AssetImage(product.imageUrl!),
             ),
           ),
         ),
         Text(
-          name,
+          product.name!,
           style: const TextStyle(
             fontSize: 16,
           ),
         ),
         Text(
-          price,
+          product.price!,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),

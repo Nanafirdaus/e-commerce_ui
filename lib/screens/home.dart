@@ -1,5 +1,5 @@
 import 'package:e_commerce_ui/models/hijab_list.dart';
-import 'package:e_commerce_ui/screens/hijab_section.dart';
+import 'package:e_commerce_ui/screens/product_section.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -69,9 +69,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ];
           },
-          body: const TabBarView(
+          body: TabBarView(
             children: [
-              HijabSection(),
+              ProductSection(
+                products: hijabs,
+              ),
               Text("Hello"),
               Text("Hello"),
               Text("Hello"),
