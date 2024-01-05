@@ -1,4 +1,7 @@
+import 'package:e_commerce_ui/models/bottle_list.dart';
+import 'package:e_commerce_ui/models/candle_list.dart';
 import 'package:e_commerce_ui/models/hijab_list.dart';
+import 'package:e_commerce_ui/models/pillow_list.dart';
 import 'package:e_commerce_ui/screens/product_section.dart';
 import 'package:flutter/material.dart';
 
@@ -74,9 +77,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ProductSection(
                 products: hijabs,
               ),
-              Text("Hello"),
-              Text("Hello"),
-              Text("Hello"),
+              ProductSection(
+                products: candles,
+              ),
+              ProductSection(
+                products: bottles,
+              ),
+              ProductSection(
+                products: pillows,
+              ),
             ],
           ),
         ),
