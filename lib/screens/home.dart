@@ -21,39 +21,32 @@ class _HomeScreenState extends State<HomeScreen> {
         child: NestedScrollView(
           headerSliverBuilder: (context, value) {
             return [
-              SliverAppBar(
+              const SliverAppBar(
                 backgroundColor: Colors.black,
                 toolbarHeight: 30,
-                title: const Text("Women"),
+                title: Text("Women"),
                 actions: [
-                  const Icon(
+                  Icon(
                     Icons.search,
                     size: 30,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 20,
                   ),
                   Stack(
                     alignment: Alignment.topRight,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.shopping_cart_outlined,
                         size: 30,
                       ),
-                      Container(
-                        width: 8,
-                        height: 8,
-                        decoration: const BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                        ),
-                      ),
+                      Badge(
+                        backgroundColor: Colors.red,
+                      )
                     ],
                   ),
                 ],
-                bottom: const TabBar(
+                bottom: TabBar(
                   tabs: [
                     Tab(
                       text: "Hijab",

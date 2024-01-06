@@ -4,11 +4,26 @@ class Product {
   String? imageUrl;
   String? price;
   String? description;
+  int? count;
+  bool? isLiked;
 
   Product({
     this.name,
     this.imageUrl,
     this.price,
-    this.description
-  });
+    this.description,
+  })  : count = 0,
+        isLiked = false;
+
+  void incrementCount() {
+    if (count! < 10) {
+      count = count! + 1;
+    }
+  }
+
+  void decrementCount() {
+    if (count != 0) {
+      count = count! - 1;
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:e_commerce_ui/models/product.dart';
+import 'package:e_commerce_ui/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -10,8 +11,6 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  int count = 0;
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -55,11 +54,18 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ),
                     Center(
-                      child: Image.asset(
-                        widget.product.imageUrl!,
-                        fit: BoxFit.cover,
-                        width: 200,
+                      child: Container(
+                        width: 180,
                         height: 160,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(widget.product.imageUrl!),
+                          ),
+                        ),
                       ),
                     ),
                     Text.rich(
@@ -121,7 +127,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         IconButton(
                           onPressed: () {
                             setState(() {
-                              count--;
+                              widget.product.decrementCount();
                             });
                           },
                           icon: Icon(
@@ -134,7 +140,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           width: 10,
                         ),
                         Text(
-                          "0",
+                          widget.product.count.toString(),
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
@@ -147,7 +153,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         IconButton(
                           onPressed: () {
                             setState(() {
-                              count++;
+                              widget.product.incrementCount();
                             });
                           },
                           icon: Icon(
@@ -157,24 +163,53 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ),
                         const SizedBox(
-                          width: 120,
+                          width: 100,
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              widget.product.isLiked = !widget.product.isLiked!;
+                            });
+                          },
                           icon: Icon(
-                            Icons.favorite_border,
+                            widget.product.isLiked!
+                                ? Icons.favorite
+                                : Icons.favorite_border_outlined,
                             size: 28,
-                            color: Colors.grey[700],
+                            color: widget.product.isLiked!
+                                ? Colors.red
+                                : Colors.grey[700],
                           ),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(
-                          Icons.shopping_cart,
-                          color: Colors.grey[700],
-                          size: 40,
+                        Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const CartScreen();
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Icon(
+                                Icons.shopping_cart,
+                                color: Colors.grey[700],
+                                size: 40,
+                              ),
+                            ),
+                            Badge.count(
+                              count: widget.product.count!,
+                              backgroundColor: Colors.red,
+                            ),
+                          ],
                         ),
                         const SizedBox(
                           width: 20,
