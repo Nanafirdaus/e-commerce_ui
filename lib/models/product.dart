@@ -13,7 +13,9 @@ class Product {
     this.price,
     this.description,
   })  : count = 0,
-        isLiked = false;
+        isLiked = false
+        
+        ;
 
   void incrementCount() {
     if (count! < 10) {

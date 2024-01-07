@@ -11,6 +11,7 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -24,8 +25,8 @@ class _DetailScreenState extends State<DetailScreen> {
             child: Container(
               width: screenWidth,
               height: screenHeight / 2,
-              decoration: BoxDecoration(
-                color: Colors.grey[700],
+              decoration: const BoxDecoration(
+                color: Colors.black,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -113,10 +114,10 @@ class _DetailScreenState extends State<DetailScreen> {
                   children: [
                     Text(
                       widget.product.description!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
+                        color: Colors.black,
                       ),
                     ),
                     const SizedBox(
@@ -130,10 +131,10 @@ class _DetailScreenState extends State<DetailScreen> {
                               widget.product.decrementCount();
                             });
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.remove,
                             size: 28,
-                            color: Colors.grey[700],
+                            color: Colors.black,
                           ),
                         ),
                         const SizedBox(
@@ -156,10 +157,10 @@ class _DetailScreenState extends State<DetailScreen> {
                               widget.product.incrementCount();
                             });
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.add,
                             size: 28,
-                            color: Colors.grey[700],
+                            color: Colors.black,
                           ),
                         ),
                         const SizedBox(
@@ -178,7 +179,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             size: 28,
                             color: widget.product.isLiked!
                                 ? Colors.red
-                                : Colors.grey[700],
+                                : Colors.black,
                           ),
                         ),
                       ],
@@ -188,22 +189,10 @@ class _DetailScreenState extends State<DetailScreen> {
                         Stack(
                           alignment: Alignment.topRight,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return const CartScreen();
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Icon(
-                                Icons.shopping_cart,
-                                color: Colors.grey[700],
-                                size: 40,
-                              ),
+                            const Icon(
+                              Icons.shopping_cart,
+                              color: Colors.black,
+                              size: 40,
                             ),
                             Badge.count(
                               count: widget.product.count!,
@@ -216,7 +205,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey[700],
+                            backgroundColor: Colors.black,
                             foregroundColor: Colors.white,
                             shape: const BeveledRectangleBorder(
                               borderRadius: BorderRadius.all(
@@ -225,7 +214,26 @@ class _DetailScreenState extends State<DetailScreen> {
                             ),
                             padding: const EdgeInsets.only(left: 85, right: 85),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            widget.product.count == 0
+                                ? ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      duration: Duration(seconds: 1),
+                                      showCloseIcon: true,
+                                      content: Text(
+                                        "There's nothing to buy in cart",
+                                      ),
+                                    ),
+                                  )
+                                : Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const CartScreen();
+                                      },
+                                    ),
+                                  );
+                          },
                           child: const Text("BUY NOW"),
                         ),
                       ],

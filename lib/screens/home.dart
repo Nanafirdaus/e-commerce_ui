@@ -2,6 +2,7 @@ import 'package:e_commerce_ui/models/bottle_list.dart';
 import 'package:e_commerce_ui/models/candle_list.dart';
 import 'package:e_commerce_ui/models/hijab_list.dart';
 import 'package:e_commerce_ui/models/pillow_list.dart';
+import 'package:e_commerce_ui/screens/like_screen.dart';
 import 'package:e_commerce_ui/screens/product_section.dart';
 import 'package:flutter/material.dart';
 
@@ -21,19 +22,32 @@ class _HomeScreenState extends State<HomeScreen> {
         child: NestedScrollView(
           headerSliverBuilder: (context, value) {
             return [
-              const SliverAppBar(
+              SliverAppBar(
                 backgroundColor: Colors.black,
                 toolbarHeight: 30,
-                title: Text("Women"),
+                title: const Text("Women"),
                 actions: [
-                  Icon(
-                    Icons.search,
-                    size: 30,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const LikeScreen(likedProduct: [],);
+                          },
+                        ),
+                      );
+                    },
+                    child: const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                      size: 30,
+                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
-                  Stack(
+                  const Stack(
                     alignment: Alignment.topRight,
                     children: [
                       Icon(
@@ -46,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ],
-                bottom: TabBar(
+                bottom: const TabBar(
                   tabs: [
                     Tab(
                       text: "Hijab",
