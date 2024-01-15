@@ -11,7 +11,6 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -218,7 +217,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             widget.product.count == 0
                                 ? ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                      duration: Duration(seconds: 1),
+                                      duration: Duration(seconds: 2),
                                       showCloseIcon: true,
                                       content: Text(
                                         "There's nothing to buy in cart",

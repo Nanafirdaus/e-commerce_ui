@@ -1,4 +1,4 @@
-import 'package:e_commerce_ui/screens/home.dart';
+import 'package:e_commerce_ui/screens/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }
